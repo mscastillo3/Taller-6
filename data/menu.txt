@@ -1,0 +1,19 @@
+Corral;14000;330
+Corral queso;16000;420
+Corral pollo;15000;380
+Corralita;13000;300
+Todoterreno;25000;550
+1/2 libra;25000;520
+Especial;24000;490
+Casera;23000;460
+Mexicana;22000;430
+Criolla;22000;430
+Costeña;20000;370
+Hawaiana;20000;400
+Wrap de pollo;15000;340
+Wrap de lomo;22000;430
+Ensalada mexicana;20900;320
+Papas medianas;5500;230
+Papas grandes;6900;280
+Papas en casco medianas;5500;250
+Papas en casco grandes;6900;300

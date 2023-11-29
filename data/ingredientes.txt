@@ -1,0 +1,15 @@
+Lechuga;1000;5
+Tomate;1000;22
+Cebolla;1000;44
+Queso mozzarella;2500;320
+Huevo;2500;70
+Queso americano;2500;104
+Tocineta express;2500;210
+Papa callejera;2000;312
+Pepinillos;2500;8
+Cebolla grille;2500;96
+Suero costeño;3000;310
+Frijol refrito;4500;375
+Queso fundido;4500;300
+Tocineta picada;6000;240
+Piña;2500;82
