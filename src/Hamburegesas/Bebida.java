@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 public class Bebida implements Producto{
 
@@ -27,6 +27,14 @@ public class Bebida implements Producto{
 		return calorias;
 	
 	}
-
+	public boolean equals(Object ingre) {
+		boolean devolver = false;
+		String calse = ingre.getClass().getName();
+		if (calse.equals("Hamburegesas.Bebida")) {
+			Bebida elIngre= (Bebida) ingre;
+			devolver = (elIngre.getNombre().equals(nombre));
+		}
+		return (devolver);
+	}
 
 }

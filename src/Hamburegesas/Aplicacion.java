@@ -1,9 +1,11 @@
-package modificado2;
+package Hamburegesas;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
@@ -62,23 +64,39 @@ public static void main(String[]args) throws IOException, NumberFormatException 
 		else if (comboOMenu.equals("2")) {
 			mostrarBebidas ();
 			int eleccion = Integer.parseInt(input("Pon el numero de la bebida que deceas."));
-			añadirItemCombo(eleccion);
+			añadirItemBebidas(eleccion);
 		}
 		else if (comboOMenu.equals("0")) {
 			mostrarCombos();
 			int eleccion = Integer.parseInt(input("Pon el numero del combo que deceas."));
-			añadirItemBebidas(eleccion);
+			añadirItemCombo(eleccion);
+			
 		}
 	}
 	else if (seleccion == 4){
-			File facutura = new File("factura.txt");
-			pedido.generarTextoFactura(facutura);
+			int id = pedido.getIdPedido();
+			File facutura = new File("factura"+id+".txt");
+			try {
+				PrintStream consola = System.out;
+				
+				System.setOut(new PrintStream((facutura)));
+				
+				System.out.println(pedido.generarTextoFactura() );
+				System.setOut(consola);
+			}
+			catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			restaurante.cerrarYGuardarPedido();
 		}
 		
 	else if (seleccion == 5){
 		int id = Integer.valueOf(input("Pon el numero del Pedido que vas a consultar."));
-		restaurante.getPedido(id);
+		System.out.println(restaurante.getPedido(id));
+	}
+	else if (seleccion == 6){
+		apagar = false;
 	}
 		
 	}

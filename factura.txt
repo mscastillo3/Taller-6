@@ -1,3 +1,6 @@
-Nombre: miguel, Direccion: dawdaw
-corral pollo 15000
-El precio totale es: 17850
+Nombre: dwa, Direccion: daw
+combo especial 32085 860
+combo especial 32085 860
+combo especial 32085 860
+combo especial 32085 860
+El precio totale es: 152724

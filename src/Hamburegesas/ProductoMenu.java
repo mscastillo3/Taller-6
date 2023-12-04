@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 public class ProductoMenu implements Producto{
 	private String nombre;
@@ -17,12 +17,21 @@ public class ProductoMenu implements Producto{
 		return precioBase;
 	}
 	public String getTextoFactura(){
-		return nombre + " "+ precioBase;
+		return nombre + " "+ precioBase+ " "+calorias ;
 		
 	}
 
 	@Override
 	public int getCalorias() {
 		return calorias;
+	}
+	
+	public boolean equals(Object ingre) {
+		boolean devolver = false;
+		if (ingre.getClass().getName().equals("Hamburegesas.ProductoMenu")) {
+			ProductoMenu elIngre= (ProductoMenu) ingre;
+			devolver = (elIngre.getNombre().equals(nombre));
+		}
+		return (devolver);
 	}
 }

@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 import java.util.ArrayList;
 
@@ -19,13 +19,13 @@ public class Combo implements Producto{
 	}
 	
 	public int getPrecio() {
-		int precios = 0;
+		double precios = 0;
 		for (Producto Item: ItemsCombo) {
 			precios+= Item.getPrecio();
 			 
 		}
-		precios = (int) (precios*(descuento));
-		return precios;
+		precios =  precios-(precios*(descuento/100));
+		return (int) precios;
 	}
 	
 	public int getCalorias() {
@@ -41,6 +41,14 @@ public class Combo implements Producto{
 		int calorias = getCalorias() ;
 		return nombreCombo + " "+ precios + " " +calorias;
 		
+	}
+	public boolean equals(Object ingre) {
+		boolean devolver = false;
+		if (ingre.getClass().getName().equals("Hamburegesas.Combo")) {
+			Combo elIngre= (Combo) ingre;
+			devolver = (elIngre.getNombre().equals(nombreCombo));
+		}
+		return (devolver);
 	}
 	
 }

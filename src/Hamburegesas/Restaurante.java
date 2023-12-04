@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -50,6 +50,7 @@ public class Restaurante {
 		cargarCombos(archivoCombos);
 			}
 	private void cargarBebidas(File archivoBebidas) {
+		ProductoRepetidoException revisar = new ProductoRepetidoException();
 		try (BufferedReader lector = new BufferedReader(new FileReader (archivoBebidas))) {
 			String linea = lector.readLine().toLowerCase();
 			while (linea != null) {
@@ -58,7 +59,14 @@ public class Restaurante {
 				int costo = Integer.parseInt(ingredienteItems[1]);
 				int calorias = Integer.parseInt(ingredienteItems[2]);
 				Bebida ingredienteActual = new Bebida(ingredienteItems[0], costo, calorias );
-				bebidas.put(ingredienteItems[0], ingredienteActual);
+				
+				
+				try {
+					revisar.revisarIngrediente(ingredienteActual);
+					bebidas.put(ingredienteItems[0], ingredienteActual);
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
+				}
 				linea = lector.readLine();
 			}
 		} catch (IOException e) {
@@ -68,17 +76,26 @@ public class Restaurante {
 		
 	}
 	private void cargarIngredientes(File archivoIngredientes) {
+		IngredienteRepetidoException revisar = new IngredienteRepetidoException();
 		try (BufferedReader lector = new BufferedReader(new FileReader (archivoIngredientes))) {
 			String linea = lector.readLine().toLowerCase();
 			while (linea != null) {
 				linea = linea.toLowerCase();
+				
 				String[] ingredienteItems = linea.split(";");
 				int costo = Integer.parseInt(ingredienteItems[1]);
 				int calorias = Integer.parseInt(ingredienteItems[2]);
 				Ingrediente ingredienteActual = new Ingrediente(ingredienteItems[0], costo, calorias );
-				ingredientes.put(ingredienteItems[0], ingredienteActual);
+				
+				try {
+					revisar.revisarIngrediente(ingredienteActual);
+					ingredientes.put(ingredienteItems[0], ingredienteActual);
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
+				}
 				linea = lector.readLine();
-			}
+				}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -86,6 +103,7 @@ public class Restaurante {
 		
 	}
 	private void cargarMenu(File archivoMenu) {
+		ProductoRepetidoException revisar = new ProductoRepetidoException();
 		try (BufferedReader lector = new BufferedReader(new FileReader (archivoMenu))) {
 			String linea = lector.readLine().toLowerCase();
 			while (linea != null) {
@@ -94,7 +112,13 @@ public class Restaurante {
 				int costo = Integer.parseInt(menuItems[1]);
 				int calorias = Integer.parseInt(menuItems[2]);
 				ProductoMenu ingredienteActual = new ProductoMenu(menuItems[0], costo, calorias );
-				menuBase.put(menuItems[0], ingredienteActual);
+				
+				try {
+					revisar.revisarIngrediente(ingredienteActual);
+					menuBase.put(menuItems[0], ingredienteActual);
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
+				}
 				linea = lector.readLine();
 			}
 		} catch (IOException e) {
@@ -104,6 +128,7 @@ public class Restaurante {
 		
 	}
 	private void cargarCombos(File archivoCombos) {
+		ProductoRepetidoException revisar = new ProductoRepetidoException();
 		try (BufferedReader lector = new BufferedReader(new FileReader (archivoCombos))) {
 			String linea = lector.readLine();
 			while (linea != null) {
@@ -125,9 +150,13 @@ public class Restaurante {
 					
 					
 				}
-				combos.put(comboItems[0], ingredienteActual);
+				try {
+					revisar.revisarIngrediente(ingredienteActual);
+					combos.put(comboItems[0], ingredienteActual);
+				} catch (IllegalArgumentException e) {
+					System.out.println(e.getMessage());
+				}
 				linea = lector.readLine();
-				
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -135,9 +164,9 @@ public class Restaurante {
 		}
 		
 	}
-	public void getPedido(int id) {
+	public String getPedido(int id) {
 		Pedido pedio = pedidos.get(id);
-		pedio.generarTextoFactura();
+		return(pedio.generarTextoFactura());
 		
 	}
 	

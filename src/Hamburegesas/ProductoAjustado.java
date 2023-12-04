@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 import java.util.ArrayList;
 
@@ -31,11 +31,12 @@ public class ProductoAjustado implements Producto{
 	}
 	
 	public int getCalorias() {
-		int calorias = 0;
+		int calorias = base.getCalorias();
 		for (Ingrediente Item: agregados) {
 			calorias+= Item.getCalorias();
 			 
 		}
+		
 		for (Ingrediente Item: eliminados) {
 			calorias-= Item.getCalorias();
 			 
@@ -43,18 +44,11 @@ public class ProductoAjustado implements Producto{
 		return calorias;
 }
 	public String getTextoFactura(){
-		int nuevoPrecio = base.getPrecio();
-		for (Ingrediente adiccion: agregados ) {
-			nuevoPrecio += adiccion.getCostoAdicional();
-		}
 		
-		String nombre = base.getNombre();
-		for (Ingrediente adiccion: agregados ) {
-			nombre += " con " +adiccion.getNombre();
-		} 
-		for (Ingrediente sin: eliminados ) {
-			nombre += " sin " +sin.getNombre();
-		} 
+		int nuevoPrecio = getPrecio();
+		String nombre = getNombre();
+		
+		
 		int calorias = getCalorias();
 		return nombre + " "+ nuevoPrecio+" "+calorias;
 		

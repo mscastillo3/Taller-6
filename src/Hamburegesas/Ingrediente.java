@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 public class Ingrediente {
 	private String nombre;
@@ -19,6 +19,15 @@ public class Ingrediente {
 	
 	public int getCalorias() {
 		return calorias;
+	}
+	
+	public boolean equals(Object ingre) {
+		boolean devolver = false;
+		if (ingre.getClass().getName().equals("Hamburegesas.Ingrediente")) {
+			Ingrediente elIngre= (Ingrediente) ingre;
+			devolver = (elIngre.getNombre().equals(nombre));
+		}
+		return (devolver);
 	}
 	
 }

@@ -1,4 +1,4 @@
-package modificado2;
+package Hamburegesas;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -22,7 +22,19 @@ public class Pedido {
 	}
 	
 	public void agregarProdcuto(Producto nuevoItem) {
-		itemsPedidos.add(nuevoItem);
+		int precioA = getPrecioTotalPedido();
+		PrecioMuyAlto revicion = new PrecioMuyAlto (precioA, nuevoItem.getPrecio());
+		try {
+		revicion.revisar();
+		itemsPedidos.add(nuevoItem);}
+		catch (IllegalArgumentException e) {
+			System.err.println(e.getMessage());
+		}
+		
+
+		
+		
+		
 	}
 	
 	private int getPrecioTotalPedido() {
@@ -37,39 +49,22 @@ public class Pedido {
 		return (precioIVA);
 	}
 	
-	private int getPrecioNetoPedido() {
+	public int getPrecioNetoPedido() {
 		int precioNeto = getPrecioTotalPedido();
 		int precioIVA = getPrecioIVAPedido();
 		int precioTotal = precioNeto+ precioIVA;
 		return (precioTotal);
 	}
-	public void generarTextoFactura(File archivo) {
-		try {
-			PrintStream consola = System.out;
-			
-			System.setOut(new PrintStream((archivo)));
-			System.out.println("Nombre: " + nombreCliente + ", Direccion: " + direccionCliente);
-			for (Producto item: itemsPedidos) {
-				
-				System.out.println(item.getTextoFactura());
-				
-			}
-			System.out.println("El precio totale es: " + getPrecioNetoPedido());
-			System.setOut(consola);
-		}
-		catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	public void generarTextoFactura() {
-		System.out.println("Nombre: " + nombreCliente + ", Direccion: " + direccionCliente);
+	
+	public String generarTextoFactura() {
+		String factura = ("Nombre: " + nombreCliente + ", Direccion: " + direccionCliente) + "\n";
 		for (Producto item: itemsPedidos) {
 			
-			System.out.println(item.getTextoFactura());
+			factura += (item.getTextoFactura())+ "\n";
 			
 		}
-		System.out.println("El precio totale es: " + getPrecioNetoPedido());
+		factura +=("El precio totale es: " + getPrecioNetoPedido());
+		return factura;
 	}
 }
 
